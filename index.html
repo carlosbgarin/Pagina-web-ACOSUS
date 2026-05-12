@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>ACOSUS - Administración Profesional de Edificios y Comunidades</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .btn-primary {
+            background: #0f766e;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -5px rgba(15, 118, 110, 0.4);
+        }
+        .btn-primary:hover {
+            background: #0d9488;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -8px rgba(15, 118, 110, 0.5);
+        }
+        .feature-card, .sustainability-card {
+            transition: all 0.3s ease;
+            border-radius: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        .feature-card:hover, .sustainability-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.15);
+            border-color: #0f766e;
+        }
+        .icon-circle {
+            border: 2px solid #0f766e;
+        }
+        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+            border-color: #0f766e;
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.2);
+            outline: none;
+        }
+        .lang-btn {
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            button, a { min-height: 44px; }
+        }
+    </style>
+    <!-- Script para manejar la redirección en Netlify y evitar el 404 -->
+    <script>
+        if (window.location.pathname !== '/' && !window.location.pathname.includes('.html') && window.location.pathname !== '') {
+            window.location.href = '/index.html';
+        }
+    </script>
+</head>
+<body class="text-gray-800 bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b-2 border-teal-200">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-2">
+                <div class="flex items-center gap-3">
+                    <img src="./assets/images/logo-acosus.png" alt="ACOSUS" class="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain">
+                    <div class="hidden md:block">
+                        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-teal-600 leading-tight">
+                            <span data-lang="es">Administración de Comunidades</span>
+                            <span data-lang="en" class="hidden">Community Management</span>
+                        </p>
+                        <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-gray-700 tracking-tight leading-tight">ACOSUS</p>
+                        <p class="text-xs sm:text-sm md:text-base text-teal-600 font-medium mt-0.5">
+                            <span data-lang="es">Gestión transparente + Innovación sustentable</span>
+                            <span data-lang="en" class="hidden">Transparent Management + Sustainable Innovation</span>
+                        </p>
+                    </div>
+                </div>
+                <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
+                    <a href="#inicio" class="text-gray-700 font-semibold hover:text-teal-600 transition text-base lg:text-lg"><span data-lang="es">Inicio</span><span data-lang="en" class="hidden">Home</span></a>
+                    <a href="#servicios" class="text-gray-700 font-semibold hover:text-teal-600 transition text-base lg:text-lg"><span data-lang="es">Servicios</span><span data-lang="en" class="hidden">Services</span></a>
+                    <a href="#nosotros" class="text-gray-700 font-semibold hover:text-teal-600 transition text-base lg:text-lg"><span data-lang="es">Nosotros</span><span data-lang="en" class="hidden">About Us</span></a>
+                    <a href="#sostenibilidad" class="text-gray-700 font-semibold hover:text-teal-600 transition text-base lg:text-lg"><span data-lang="es">Sostenibilidad</span><span data-lang="en" class="hidden">Sustainability</span></a>
+                    <a href="#trabaja-con-nosotros" class="text-gray-700 font-semibold hover:text-teal-600 transition text-base lg:text-lg"><span data-lang="es">Envia tu CV</span><span data-lang="en" class="hidden">Send your CV</span></a>
+                    <a href="#contacto" class="text-gray-700 font-semibold hover:text-teal-600 transition text-base lg:text-lg"><span data-lang="es">Contacto</span><span data-lang="en" class="hidden">Contact</span></a>
+                </nav>
+                <button id="menu-toggle" class="lg:hidden text-teal-600 text-3xl"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="lg:hidden bg-white border-t-2 border-teal-100 hidden shadow-xl">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-3">
+                <a href="#inicio" class="text-teal-700 font-semibold py-2 hover:bg-teal-50 px-3 rounded-lg"><span data-lang="es">Inicio</span><span data-lang="en" class="hidden">Home</span></a>
+                <a href="#servicios" class="text-gray-600 font-semibold py-2 hover:bg-teal-50 px-3 rounded-lg"><span data-lang="es">Servicios</span><span data-lang="en" class="hidden">Services</span></a>
+                <a href="#nosotros" class="text-gray-600 font-semibold py-2 hover:bg-teal-50 px-3 rounded-lg"><span data-lang="es">Nosotros</span><span data-lang="en" class="hidden">About Us</span></a>
+                <a href="#sostenibilidad" class="text-gray-600 font-semibold py-2 hover:bg-teal-50 px-3 rounded-lg"><span data-lang="es">Sostenibilidad</span><span data-lang="en" class="hidden">Sustainability</span></a>
+                <a href="#trabaja-con-nosotros" class="text-gray-600 font-semibold py-2 hover:bg-teal-50 px-3 rounded-lg"><span data-lang="es">Envia tu CV</span><span data-lang="en" class="hidden">Send your CV</span></a>
+                <a href="#contacto" class="text-gray-600 font-semibold py-2 hover:bg-teal-50 px-3 rounded-lg"><span data-lang="es">Contacto</span><span data-lang="en" class="hidden">Contact</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative text-white overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-teal-900/70 to-teal-700/50 z-10"></div>
+           <img src="./assets/images/hero-edificio.jpg" alt="Administración profesional ACOSUS" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 container mx-auto px-4 py-10 md:py-14">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight">
+                    <span data-lang="es">Administración profesional<br>para su comunidad</span>
+                    <span data-lang="en" class="hidden">Professional management<br>for your community</span>
+                </h2>
+                <p class="text-base sm:text-lg md:text-xl mb-6 leading-relaxed opacity-95">
+                    <span data-lang="es">En ACOSUS nos comprometemos con la gestión eficiente, transparente y sustentable de su edificio o condominio.</span>
+                    <span data-lang="en" class="hidden">At ACOSUS we are committed to efficient, transparent and sustainable management of your building or condominium.</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contacto" class="btn-primary text-white font-bold py-3 px-6 md:px-8 rounded-xl"><i class="fas fa-phone-alt mr-2"></i> <span data-lang="es">Contáctenos</span><span data-lang="en" class="hidden">Contact Us</span></a>
+                    <a href="#servicios" class="btn-primary text-white font-bold py-3 px-6 md:px-8 rounded-xl"><i class="fas fa-building mr-2"></i> <span data-lang="es">Nuestros Servicios</span><span data-lang="en" class="hidden">Our Services</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="bg-white py-10 shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <div class="flex items-center gap-3"><i class="fas fa-shield-alt text-teal-600 text-3xl"></i><span class="text-lg font-semibold text-gray-700"><span data-lang="es">Seguridad garantizada</span><span data-lang="en" class="hidden">Guaranteed Security</span></span></div>
+                <div class="flex items-center gap-3"><i class="fas fa-handshake text-teal-600 text-3xl"></i><span class="text-lg font-semibold text-gray-700"><span data-lang="es">Transparencia total</span><span data-lang="en" class="hidden">Total Transparency</span></span></div>
+                <div class="flex items-center gap-3"><i class="fas fa-leaf text-teal-600 text-3xl"></i><span class="text-lg font-semibold text-gray-700"><span data-lang="es">Enfoque sostenible</span><span data-lang="en" class="hidden">Sustainable Focus</span></span></div>
+                <div class="flex items-center gap-3"><i class="fas fa-headset text-teal-600 text-3xl"></i><span class="text-lg font-semibold text-gray-700"><span data-lang="es">Soporte 24/7</span><span data-lang="en" class="hidden">24/7 Support</span></span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-14">
+                <span class="text-teal-600 font-semibold text-sm uppercase tracking-wider"><span data-lang="es">Servicios</span><span data-lang="en" class="hidden">Services</span></span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4"><span data-lang="es">Nuestros Servicios Integrales</span><span data-lang="en" class="hidden">Our Comprehensive Services</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto"><span data-lang="es">Ofrecemos soluciones completas para la administración de su comunidad, adaptadas a sus necesidades específicas.</span><span data-lang="en" class="hidden">We offer complete solutions for the management of your community, adapted to your specific needs.</span></p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden feature-card">
+                    <div class="p-6">
+                        <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-4 icon-circle">
+                            <i class="fas fa-file-invoice-dollar text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Gestión Financiera</span><span data-lang="en" class="hidden">Financial Management</span></h3>
+                        <p class="text-gray-600 mb-4"><span data-lang="es">Administración profesional de cobranzas, pagos, presupuestos y estados financieros con total transparencia.</span><span data-lang="en" class="hidden">Professional management of collections, payments, budgets and financial statements with total transparency.</span></p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Elaboración de presupuestos anuales</span><span data-lang="en" class="hidden">Annual budget preparation</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Control de gastos y rendición de cuentas</span><span data-lang="en" class="hidden">Expense control and accountability</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Asesoría tributaria para comunidades</span><span data-lang="en" class="hidden">Tax advice for communities</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden feature-card">
+                    <div class="p-6">
+                        <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-4 icon-circle">
+                            <i class="fas fa-tools text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Mantenimiento Preventivo</span><span data-lang="en" class="hidden">Preventive Maintenance</span></h3>
+                        <p class="text-gray-600 mb-4"><span data-lang="es">Programas de mantenimiento para preservar el valor de su propiedad y evitar costosas reparaciones futuras.</span><span data-lang="en" class="hidden">Maintenance programs to preserve the value of your property and avoid costly future repairs.</span></p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Inspecciones técnicas periódicas</span><span data-lang="en" class="hidden">Periodic technical inspections</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Coordinación con proveedores calificados</span><span data-lang="en" class="hidden">Coordination with qualified suppliers</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Gestión de áreas comunes</span><span data-lang="en" class="hidden">Common area management</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden feature-card">
+                    <div class="p-6">
+                        <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-4 icon-circle">
+                            <i class="fas fa-user-shield text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Seguridad y Convivencia</span><span data-lang="en" class="hidden">Security and Coexistence</span></h3>
+                        <p class="text-gray-600 mb-4"><span data-lang="es">Soluciones integrales para garantizar la seguridad y armonía entre los residentes.</span><span data-lang="en" class="hidden">Comprehensive solutions to guarantee security and harmony among residents.</span></p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Coordinación con servicios de vigilancia</span><span data-lang="en" class="hidden">Coordination with surveillance services</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Mediación en conflictos vecinales</span><span data-lang="en" class="hidden">Neighborhood conflict mediation</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Cumplimiento de reglamentos internos</span><span data-lang="en" class="hidden">Compliance with internal regulations</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden feature-card">
+                    <div class="p-6">
+                        <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-4 icon-circle">
+                            <i class="fas fa-leaf text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Gestión Sostenible</span><span data-lang="en" class="hidden">Sustainable Management</span></h3>
+                        <p class="text-gray-600 mb-4"><span data-lang="es">Implementamos prácticas ecoamigables que reducen costos para la comunidad y benefician al medio ambiente.</span><span data-lang="en" class="hidden">We implement eco-friendly practices that reduce costs and benefit the environment.</span></p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Programas de reciclaje y reducción de residuos</span><span data-lang="en" class="hidden">Recycling and waste reduction programs</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Optimización del consumo energético</span><span data-lang="en" class="hidden">Energy consumption optimization</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Asesoría en otros programas verdes para la comunidad</span><span data-lang="en" class="hidden">Green certification advice</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden feature-card">
+                    <div class="p-6">
+                        <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-4 icon-circle">
+                            <i class="fas fa-gavel text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Asesoría Legal</span><span data-lang="en" class="hidden">Legal Advice</span></h3>
+                        <p class="text-gray-600 mb-4"><span data-lang="es">Apoyo profesional en todos los aspectos legales relacionados con la administración de su comunidad.</span><span data-lang="en" class="hidden">Professional support in all legal aspects related to the administration of your community.</span></p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Actualización de reglamentos de copropiedad</span><span data-lang="en" class="hidden">Upgrade of co-ownership regulations</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Administracion de personal de servicio</span><span data-lang="en" class="hidden">Administration of service staff</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Gestión de contratos con proveedores</span><span data-lang="en" class="hidden">Supplier contract management</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden feature-card">
+                    <div class="p-6">
+                        <div class="bg-teal-100 text-teal-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-4 icon-circle">
+                            <i class="fas fa-mobile-alt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Plataforma Digital</span><span data-lang="en" class="hidden">Digital Platform</span></h3>
+                        <p class="text-gray-600 mb-4"><span data-lang="es">Acceso 24/7 a información relevante de su comunidad a través de plataforma digital.</span><span data-lang="en" class="hidden">24/7 access to relevant information about your community through our exclusive platform.</span></p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Estado de cuentas en tiempo real</span><span data-lang="en" class="hidden">Real-time account status</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Comunicados de administración</span><span data-lang="en" class="hidden">Administration announcements</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-teal-500 mt-1 mr-2"></i><span data-lang="es">Calendario de eventos</span><span data-lang="en" class="hidden">Event calendar</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="nosotros" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-stretch gap-12">
+                <div class="lg:w-1/2 flex">
+                    <div class="relative w-full">
+                        <div class="absolute -top-5 -left-5 w-full h-full bg-teal-100 rounded-2xl"></div>
+                        <img 
+                            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                            alt="Equipo profesional de ACOSUS"
+                            class="relative rounded-2xl shadow-lg w-full h-full object-cover"
+                            style="min-height: 100%;"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 flex flex-col justify-center">
+                    <span class="text-teal-600 font-semibold text-sm uppercase tracking-wider"><span data-lang="es">Sobre nosotros</span><span data-lang="en" class="hidden">About Us</span></span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-6"><span data-lang="es">Nuestra Compañía</span><span data-lang="en" class="hidden">Our Company</span></h2>
+                    <p class="text-gray-600 mb-6 text-lg"><span data-lang="es">ACOSUS es una empresa líder en administración de edificios y comunidades, con más de 3 años de experiencia brindando soluciones profesionales y personalizadas.</span><span data-lang="en" class="hidden">ACOSUS is a leading company in building and community management, with more than 3 years of experience providing professional and personalized solutions.</span></p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center"><i class="fas fa-bullseye text-teal-600 mr-2"></i> <span data-lang="es">Nuestra Misión</span><span data-lang="en" class="hidden">Our Mission</span></h3>
+                        <p class="text-gray-600"><span data-lang="es">Garantizar la gestión eficiente, transparente y sustentable de las comunidades que administramos, generando valor para nuestros clientes a través de un servicio profesional, ético y comprometido.</span><span data-lang="en" class="hidden">Ensure efficient, transparent and sustainable management of the communities we manage, generating value for our clients through a professional, ethical and committed service.</span></p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center"><i class="fas fa-eye text-teal-600 mr-2"></i> <span data-lang="es">Nuestra Visión</span><span data-lang="en" class="hidden">Our Vision</span></h3>
+                        <p class="text-gray-600"><span data-lang="es">Ser reconocidos como la mejor alternativa en administración de edificios y condominios en Chile, destacando por nuestra innovación, responsabilidad ambiental y excelencia en el servicio.</span><span data-lang="en" class="hidden">To be recognized as the best alternative in building and condominium management in Chile, standing out for our innovation, environmental responsibility and service excellence.</span></p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center"><i class="fas fa-heart text-teal-600 mr-2"></i> <span data-lang="es">Nuestros Valores</span><span data-lang="en" class="hidden">Our Values</span></h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-xl"><h4 class="font-bold text-teal-700 mb-2"><span data-lang="es">Integridad</span><span data-lang="en" class="hidden">Integrity</span></h4><p class="text-gray-600 text-sm"><span data-lang="es">Actuamos con honestidad y transparencia.</span><span data-lang="en" class="hidden">We act with honesty and transparency.</span></p></div>
+                            <div class="bg-gray-50 p-4 rounded-xl"><h4 class="font-bold text-teal-700 mb-2"><span data-lang="es">Compromiso</span><span data-lang="en" class="hidden">Commitment</span></h4><p class="text-gray-600 text-sm"><span data-lang="es">Nos responsabilizamos por el bienestar de las comunidades.</span><span data-lang="en" class="hidden">We take responsibility for the well-being of communities.</span></p></div>
+                            <div class="bg-gray-50 p-4 rounded-xl"><h4 class="font-bold text-teal-700 mb-2"><span data-lang="es">Innovación</span><span data-lang="en" class="hidden">Innovation</span></h4><p class="text-gray-600 text-sm"><span data-lang="es">Implementamos soluciones tecnológicas eficientes.</span><span data-lang="en" class="hidden">We implement efficient technological solutions.</span></p></div>
+                            <div class="bg-gray-50 p-4 rounded-xl"><h4 class="font-bold text-teal-700 mb-2"><span data-lang="es">Sostenibilidad</span><span data-lang="en" class="hidden">Sustainability</span></h4><p class="text-gray-600 text-sm"><span data-lang="es">Promovemos prácticas ecoamigables.</span><span data-lang="en" class="hidden">We promote eco-friendly practices.</span></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sostenibilidad Section -->
+    <section id="sostenibilidad" class="py-20 bg-teal-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-14">
+                <span class="text-teal-600 font-semibold text-sm uppercase tracking-wider"><span data-lang="es">Sostenibilidad</span><span data-lang="en" class="hidden">Sustainability</span></span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4"><span data-lang="es">Compromiso con la Sostenibilidad</span><span data-lang="en" class="hidden">Commitment to Sustainability</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto"><span data-lang="es">En ACOSUS integramos prácticas responsables con el medio ambiente en todos nuestros procesos de administración.</span><span data-lang="en" class="hidden">At ACOSUS we integrate environmentally responsible practices in all our management processes.</span></p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-md text-center sustainability-card">
+                    <div class="bg-teal-100 text-teal-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-circle">
+                        <i class="fas fa-solar-panel text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Energías Renovables</span><span data-lang="en" class="hidden">Renewable Energy</span></h3>
+                    <p class="text-gray-600"><span data-lang="es">Asesoramos en la implementación de sistemas solares y otras alternativas de energía limpia.</span><span data-lang="en" class="hidden">We advise on the implementation of solar systems and other clean energy alternatives.</span></p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-md text-center sustainability-card">
+                    <div class="bg-teal-100 text-teal-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-circle">
+                        <i class="fas fa-recycle text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Gestión de Residuos</span><span data-lang="en" class="hidden">Waste Management</span></h3>
+                    <p class="text-gray-600"><span data-lang="es">Implementamos programas de reciclaje y compostaje adaptados a cada comunidad.</span><span data-lang="en" class="hidden">We implement recycling and composting programs adapted to each community.</span></p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-md text-center sustainability-card">
+                    <div class="bg-teal-100 text-teal-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 icon-circle">
+                        <i class="fas fa-tint text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3"><span data-lang="es">Eficiencia Hídrica</span><span data-lang="en" class="hidden">Water Efficiency</span></h3>
+                    <p class="text-gray-600"><span data-lang="es">Optimizamos el consumo de agua mediante sistemas de riego eficiente y detección de fugas.</span><span data-lang="en" class="hidden">We optimize water consumption through efficient irrigation systems and leak detection.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Trabaja con Nosotros -->
+    <section id="trabaja-con-nosotros" class="py-20 bg-gradient-to-r from-teal-50 to-teal-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-14">
+                <span class="text-teal-600 font-semibold text-sm uppercase tracking-wider"><span data-lang="es">Talento</span><span data-lang="en" class="hidden">Talent</span></span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4"><span data-lang="es">Únete a Nuestro Equipo</span><span data-lang="en" class="hidden">Join Our Team</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto"><span data-lang="es">Buscamos talento comprometido para crecer juntos. Si te apasiona el servicio y la excelencia, queremos conocerte.</span><span data-lang="en" class="hidden">We seek committed talent to grow together. If you are passionate about service and excellence, we want to meet you.</span></p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="bg-white rounded-2xl shadow-lg p-8 h-full">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-briefcase mr-3 text-teal-600"></i> <span data-lang="es">Posiciones Disponibles</span><span data-lang="en" class="hidden">Available Positions</span>
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-teal-500 pl-4 py-2">
+                            <h4 class="text-xl font-semibold text-gray-800"><span data-lang="es">Conserje Profesional</span><span data-lang="en" class="hidden">Professional Concierge</span></h4>
+                            <p class="text-gray-600 mb-2"><span data-lang="es">Encargado de recepción, control de acceso y atención a residentes</span><span data-lang="en" class="hidden">Reception, access control and resident service</span></p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full"><span data-lang="es">Tiempo Completo</span><span data-lang="en" class="hidden">Full Time</span></span>
+                                <span class="bg-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full"><span data-lang="es">Turnos Rotativos</span><span data-lang="en" class="hidden">Rotating Shifts</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-l-4 border-teal-500 pl-4 py-2">
+                            <h4 class="text-xl font-semibold text-gray-800"><span data-lang="es">Personal de Aseo</span><span data-lang="en" class="hidden">Cleaning Staff</span></h4>
+                            <p class="text-gray-600 mb-2"><span data-lang="es">Mantenimiento y limpieza de áreas comunes en edificios y condominios</span><span data-lang="en" class="hidden">Maintenance and cleaning of common areas in buildings and condominiums</span></p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full"><span data-lang="es">Medio Tiempo</span><span data-lang="en" class="hidden">Part Time</span></span>
+                                <span class="bg-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full"><span data-lang="es">Flexibilidad Horaria</span><span data-lang="en" class="hidden">Flexible Schedule</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-l-4 border-teal-500 pl-4 py-2">
+                            <h4 class="text-xl font-semibold text-gray-800"><span data-lang="es">Mayordomo/Administrador</span><span data-lang="en" class="hidden">Butler/Administrator</span></h4>
+                            <p class="text-gray-600 mb-2"><span data-lang="es">Supervisión general del edificio, coordinación con proveedores</span><span data-lang="en" class="hidden">General building supervision, supplier coordination</span></p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full"><span data-lang="es">Tiempo Completo</span><span data-lang="en" class="hidden">Full Time</span></span>
+                                <span class="bg-teal-100 text-teal-700 text-xs px-3 py-1 rounded-full"><span data-lang="es">Experiencia Requerida</span><span data-lang="en" class="hidden">Experience Required</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg p-8 h-full">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-file-upload mr-3 text-teal-600"></i> <span data-lang="es">Postula Aquí</span><span data-lang="en" class="hidden">Apply Here</span>
+                    </h3>
+                    
+                    <!-- FORMULARIO RRHH CORREGIDO CON FORMPREE -->
+                    <form action="https://formspree.io/f/xvzlljpz" method="POST" enctype="multipart/form-data" class="space-y-4 contact-form" id="rrhhForm">
+                        <div>
+                            <label for="postulante-nombre" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Nombre Completo</span><span data-lang="en" class="hidden">Full Name</span> *</label>
+                            <input type="text" id="postulante-nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                        </div>
+                        
+                        <div>
+                            <label for="postulante-email" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Correo Electrónico</span><span data-lang="en" class="hidden">Email</span> *</label>
+                            <input type="email" id="postulante-email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                        </div>
+                        
+                        <div>
+                            <label for="postulante-telefono" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Teléfono</span><span data-lang="en" class="hidden">Phone</span> *</label>
+                            <input type="tel" id="postulante-telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                        </div>
+                        
+                        <div>
+                            <label for="postulante-cargo" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Cargo de Interés</span><span data-lang="en" class="hidden">Position of Interest</span> *</label>
+                            <select id="postulante-cargo" name="cargo" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                                <option value="seleccione" data-lang-es="Selecciona un cargo" data-lang-en="Select a position">Selecciona un cargo</option>
+                                <option value="conserje" data-lang-es="Conserje Profesional" data-lang-en="Professional Concierge">Conserje Profesional</option>
+                                <option value="aseo" data-lang-es="Personal de Aseo" data-lang-en="Cleaning Staff">Personal de Aseo</option>
+                                <option value="mayordomo" data-lang-es="Mayordomo/Administrador" data-lang-en="Butler/Administrator">Mayordomo/Administrador</option>
+                                <option value="otros" data-lang-es="Otro" data-lang-en="Other">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="postulante-experiencia" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Años de Experiencia</span><span data-lang="en" class="hidden">Years of Experience</span> *</label>
+                            <select id="postulante-experiencia" name="experiencia" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                                <option value="" data-lang-es="Selecciona experiencia" data-lang-en="Select experience">Selecciona experiencia</option>
+                                <option value="0-1" data-lang-es="0-1 año" data-lang-en="0-1 year">0-1 año</option>
+                                <option value="1-3" data-lang-es="1-3 años" data-lang-en="1-3 years">1-3 años</option>
+                                <option value="3-5" data-lang-es="3-5 años" data-lang-en="3-5 years">3-5 años</option>
+                                <option value="5+" data-lang-es="5+ años" data-lang-en="5+ years">5+ años</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="postulante-cv" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Adjuntar Curriculum Vitae</span><span data-lang="en" class="hidden">Upload CV</span> *</label>
+                            <input type="file" id="postulante-cv" name="cv" accept=".pdf,.doc,.docx" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                            <p class="text-sm text-gray-500 mt-1"><span data-lang="es">Formatos: PDF, DOC, DOCX (Máx. 5MB)</span><span data-lang="en" class="hidden">Formats: PDF, DOC, DOCX (Max. 5MB)</span></p>
+                        </div>
+                        
+                        <div>
+                            <label for="postulante-mensaje" class="block text-gray-700 font-medium mb-2"><span data-lang="es">¿Por qué quieres trabajar con nosotros?</span><span data-lang="en" class="hidden">Why do you want to work with us?</span></label>
+                            <textarea id="postulante-mensaje" name="mensaje" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" placeholder="..."></textarea>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input type="checkbox" id="postulante-privacidad" class="mr-2 rounded" required>
+                            <label for="postulante-privacidad" class="text-gray-600 text-sm"><span data-lang="es">Acepto el tratamiento de mis datos para fines de reclutamiento.</span><span data-lang="en" class="hidden">I accept the processing of my data for recruitment purposes.</span></label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-xl w-full transition">
+                            <i class="fas fa-paper-plane mr-2"></i> <span data-lang="es">Enviar Postulación</span><span data-lang="en" class="hidden">Submit Application</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-teal-800 text-white rounded-2xl p-8 text-center">
+                <h3 class="text-2xl font-bold mb-4"><span data-lang="es">¿Tienes dudas sobre el proceso?</span><span data-lang="en" class="hidden">Have questions about the process?</span></h3>
+                <p class="text-lg mb-4"><span data-lang="es">Contáctate directamente con nuestro equipo de Recursos Humanos</span><span data-lang="en" class="hidden">Contact our Human Resources team directly</span></p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
+                    <div class="flex items-center"><i class="fas fa-envelope text-teal-300 text-xl mr-3"></i><span>rrhh@acosus.cl</span></div>
+                    <div class="flex items-center"><i class="fas fa-phone-alt text-teal-300 text-xl mr-3"></i><span>+56 2 2345 6790</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <span class="text-teal-600 font-semibold text-sm uppercase tracking-wider"><span data-lang="es">Contacto</span><span data-lang="en" class="hidden">Contact</span></span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-6"><span data-lang="es">Contáctenos</span><span data-lang="en" class="hidden">Contact Us</span></h2>
+                    <p class="text-gray-600 mb-8 text-lg"><span data-lang="es">Estamos para ayudarle. Complete el formulario y nos comunicaremos con usted a la brevedad.</span><span data-lang="en" class="hidden">We are here to help you. Fill out the form and we will contact you shortly.</span></p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-teal-100 text-teal-600 rounded-xl p-3"><i class="fas fa-map-marker-alt text-xl"></i></div>
+                            <div><h4 class="font-bold text-gray-800 mb-1"><span data-lang="es">Oficina Central</span><span data-lang="en" class="hidden">Head Office</span></h4><p class="text-gray-600">Av. Providencia 2154, Oficina 302, Providencia, Santiago de Chile</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-teal-100 text-teal-600 rounded-xl p-3"><i class="fas fa-phone-alt text-xl"></i></div>
+                            <div><h4 class="font-bold text-gray-800 mb-1"><span data-lang="es">Teléfonos</span><span data-lang="en" class="hidden">Phones</span></h4><p class="text-gray-600">+56 2 2345 6789</p><p class="text-gray-600">+56 9 8765 4321 (WhatsApp)</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-teal-100 text-teal-600 rounded-xl p-3"><i class="fas fa-envelope text-xl"></i></div>
+                            <div><h4 class="font-bold text-gray-800 mb-1"><span data-lang="es">Correo Electrónico</span><span data-lang="en" class="hidden">Email</span></h4><p class="text-gray-600">contacto@acosus.cl</p><p class="text-gray-600">soporte@acosus.cl</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-teal-100 text-teal-600 rounded-xl p-3"><i class="fas fa-clock text-xl"></i></div>
+                            <div><h4 class="font-bold text-gray-800 mb-1"><span data-lang="es">Horario de Atención</span><span data-lang="en" class="hidden">Business Hours</span></h4><p class="text-gray-600"><span data-lang="es">Lunes a Viernes: 9:00 - 18:00 hrs</span><span data-lang="en" class="hidden">Monday to Friday: 9:00 AM - 6:00 PM</span></p><p class="text-gray-600"><span data-lang="es">Sábado: 10:00 - 14:00 hrs</span><span data-lang="en" class="hidden">Saturday: 10:00 AM - 2:00 PM</span></p></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-md">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6"><span data-lang="es">Formulario de Contacto</span><span data-lang="en" class="hidden">Contact Form</span></h3>
+                        <!-- FORMULARIO CONTACTO CORREGIDO CON FORMPREE -->
+                        <form action="https://formspree.io/f/mdabbvqw" method="POST" class="space-y-4 contact-form" id="contactForm">
+                            <div><label for="nombre" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Nombre Completo</span><span data-lang="en" class="hidden">Full Name</span> *</label><input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></div>
+                            <div><label for="email" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Correo Electrónico</span><span data-lang="en" class="hidden">Email</span> *</label><input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></div>
+                            <div><label for="telefono" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Teléfono</span><span data-lang="en" class="hidden">Phone</span> *</label><input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></div>
+                            <div><label for="comunidad" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Nombre de su Comunidad/Edificio</span><span data-lang="en" class="hidden">Community/Building Name</span></label><input type="text" id="comunidad" name="comunidad" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition"></div>
+                            <div>
+                                <label for="servicio" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Servicio de Interés</span><span data-lang="en" class="hidden">Service of Interest</span> *</label>
+                                <select id="servicio" name="servicio" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                                    <option value="seleccione" data-lang-es="Seleccione un servicio" data-lang-en="Select a service">Seleccione un servicio</option>
+                                    <option value="administracion" data-lang-es="Administración Integral" data-lang-en="Comprehensive Management">Administración Integral</option>
+                                    <option value="financiera" data-lang-es="Gestión Financiera" data-lang-en="Financial Management">Gestión Financiera</option>
+                                    <option value="mantenimiento" data-lang-es="Mantenimiento Preventivo" data-lang-en="Preventive Maintenance">Mantenimiento Preventivo</option>
+                                    <option value="seguridad" data-lang-es="Seguridad y Convivencia" data-lang-en="Security and Coexistence">Seguridad y Convivencia</option>
+                                    <option value="sostenibilidad" data-lang-es="Gestión Sostenible" data-lang-en="Sustainable Management">Gestión Sostenible</option>
+                                    <option value="legal" data-lang-es="Asesoría Legal" data-lang-en="Legal Advice">Asesoría Legal</option>
+                                    <option value="otros" data-lang-es="Otros" data-lang-en="Other">Otros</option>
+                                </select>
+                            </div>
+                            <div><label for="mensaje" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Mensaje</span><span data-lang="en" class="hidden">Message</span> *</label><textarea id="mensaje" name="mensaje" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></textarea></div>
+                            <div class="flex items-center"><input type="checkbox" id="privacidad" name="privacidad" class="mr-2 rounded" required><label for="privacidad" class="text-gray-600 text-sm"><span data-lang="es">Acepto la política de privacidad.</span><span data-lang="en" class="hidden">I accept the privacy policy.</span></label></div>
+                            <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-xl w-full transition"><i class="fas fa-paper-plane mr-2"></i> <span data-lang="es">Enviar Mensaje</span><span data-lang="en" class="hidden">Send Message</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-14">
+                <span class="text-teal-600 font-semibold text-sm uppercase tracking-wider">FAQ</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4"><span data-lang="es">Preguntas Frecuentes</span><span data-lang="en" class="hidden">Frequently Asked Questions</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto"><span data-lang="es">Resolvemos sus dudas sobre nuestros servicios de administración.</span><span data-lang="en" class="hidden">We answer your questions about our management services.</span></p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden mb-4"><button class="faq-question w-full text-left p-6 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800"><span data-lang="es">¿Qué incluye el servicio de administración integral?</span><span data-lang="en" class="hidden">What does the comprehensive management service include?</span></h3><i class="fas fa-chevron-down text-teal-600 transition-transform"></i></button><div class="faq-answer px-6 pb-6 hidden"><p class="text-gray-600"><span data-lang="es">Nuestro servicio integral incluye gestión financiera completa, mantenimiento preventivo, coordinación con proveedores, asesoría legal, gestión de seguridad, programas sostenibles y plataforma digital.</span><span data-lang="en" class="hidden">Our comprehensive service includes complete financial management, preventive maintenance, supplier coordination, legal advice, security management, sustainable programs and digital platform.</span></p></div></div>
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden mb-4"><button class="faq-question w-full text-left p-6 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800"><span data-lang="es">¿Cómo garantizan la transparencia financiera?</span><span data-lang="en" class="hidden">How do you guarantee financial transparency?</span></h3><i class="fas fa-chevron-down text-teal-600 transition-transform"></i></button><div class="faq-answer px-6 pb-6 hidden"><p class="text-gray-600"><span data-lang="es">Implementamos rendición de cuentas mensual, estados financieros auditables, plataforma digital con información en tiempo real y conciliaciones bancarias periódicas.</span><span data-lang="en" class="hidden">We implement monthly accountability, auditable financial statements, digital platform with real-time information and periodic bank reconciliations.</span></p></div></div>
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden mb-4"><button class="faq-question w-full text-left p-6 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800"><span data-lang="es">¿Qué beneficios ofrece su programa de sostenibilidad?</span><span data-lang="en" class="hidden">What benefits does your sustainability program offer?</span></h3><i class="fas fa-chevron-down text-teal-600 transition-transform"></i></button><div class="faq-answer px-6 pb-6 hidden"><p class="text-gray-600"><span data-lang="es">Reduce costos operativos entre 15% y 30% mediante optimización energética y gestión de residuos.</span><span data-lang="en" class="hidden">Reduces operating costs between 15% and 30% through energy optimization and waste management.</span></p></div></div>
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden mb-4"><button class="faq-question w-full text-left p-6 flex justify-between items-center"><h3 class="text-lg font-semibold text-gray-800"><span data-lang="es">¿Qué requisitos necesitamos para contratar sus servicios?</span><span data-lang="en" class="hidden">What requirements do we need to hire your services?</span></h3><i class="fas fa-chevron-down text-teal-600 transition-transform"></i></button><div class="faq-answer px-6 pb-6 hidden"><p class="text-gray-600"><span data-lang="es">Aprobación en junta de vecinos, documentación básica de la comunidad y firma de contrato. Nosotros gestionamos toda la transición.</span><span data-lang="en" class="hidden">Approval at the neighbors' meeting, basic community documentation and contract signing. We manage the entire transition.</span></p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-teal-700 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6"><span data-lang="es">¿Listo para una administración profesional de su comunidad?</span><span data-lang="en" class="hidden">Ready for professional management of your community?</span></h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-95"><span data-lang="es">Contáctenos hoy mismo para una asesoría sin costo.</span><span data-lang="en" class="hidden">Contact us today for a free consultation.</span></p>
+            <a href="#contacto" class="inline-block bg-white text-teal-700 font-bold py-4 px-10 rounded-xl hover:bg-gray-100 transition shadow-lg"><i class="fas fa-envelope mr-2"></i> <span data-lang="es">Solicitar Información</span><span data-lang="en" class="hidden">Request Information</span></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="./assets/images/logo-acosus-blanco.png" alt="ACOSUS" class="h-16 w-auto object-contain bg-white rounded-xl p-1 mr-3">
+                        <h3 class="text-xl font-bold">ACOSUS</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4"><span data-lang="es">Administración profesional de edificios y comunidades.</span><span data-lang="en" class="hidden">Professional building and community management.</span></p>
+                </div>
+                <div><h4 class="text-lg font-bold mb-4"><span data-lang="es">Servicios</span><span data-lang="en" class="hidden">Services</span></h4><ul class="space-y-2"><li><a href="javascript:void(0)" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Administración Integral</span><span data-lang="en" class="hidden">Comprehensive Management</span></a></li><li><a href="javascript:void(0)" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Gestión Financiera</span><span data-lang="en" class="hidden">Financial Management</span></a></li><li><a href="javascript:void(0)" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Mantenimiento Preventivo</span><span data-lang="en" class="hidden">Preventive Maintenance</span></a></li><li><a href="javascript:void(0)" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Gestión Sostenible</span><span data-lang="en" class="hidden">Sustainable Management</span></a></li></ul></div>
+                <div><h4 class="text-lg font-bold mb-4"><span data-lang="es">Enlaces Rápidos</span><span data-lang="en" class="hidden">Quick Links</span></h4><ul class="space-y-2"><li><a href="#inicio" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Inicio</span><span data-lang="en" class="hidden">Home</span></a></li><li><a href="#nosotros" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Nosotros</span><span data-lang="en" class="hidden">About Us</span></a></li><li><a href="#servicios" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Servicios</span><span data-lang="en" class="hidden">Services</span></a></li><li><a href="#sostenibilidad" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Sostenibilidad</span><span data-lang="en" class="hidden">Sustainability</span></a></li><li><a href="#trabaja-con-nosotros" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Trabaja con Nosotros</span><span data-lang="en" class="hidden">Work with Us</span></a></li><li><a href="#contacto" class="text-gray-400 hover:text-teal-400 transition"><span data-lang="es">Contacto</span><span data-lang="en" class="hidden">Contact</span></a></li></ul></div>
+                <div><h4 class="text-lg font-bold mb-4"><span data-lang="es">Contacto</span><span data-lang="en" class="hidden">Contact</span></h4><ul class="space-y-3"><li class="flex items-start"><i class="fas fa-map-marker-alt text-teal-400 mt-1 mr-3"></i><span class="text-gray-400">Av. Providencia 2154, Oficina 302, Santiago</span></li><li class="flex items-start"><i class="fas fa-phone-alt text-teal-400 mt-1 mr-3"></i><span class="text-gray-400">+56 9 62643172</span></li><li class="flex items-start"><i class="fas fa-envelope text-teal-400 mt-1 mr-3"></i><span class="text-gray-400">contacto@acosus.cl</span></li></ul></div>
+            </div>
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-center md:text-left">© 2026 ACOSUS. <span data-lang="es">Todos los derechos reservados.</span><span data-lang="en" class="hidden">All rights reserved.</span></p>
+                    <!-- Botón de Idioma en el Footer -->
+                    <button id="lang-toggle-footer" class="bg-teal-800 hover:bg-teal-700 transition text-white font-semibold py-2 px-5 rounded-xl flex items-center gap-2 border border-teal-500 shadow-md lang-btn">
+                        <span id="lang-flag-footer" class="text-lg">🇪🇸</span>
+                        <span id="lang-text-footer" class="font-semibold">ES</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-teal-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg opacity-0 invisible transition-all hover:bg-teal-700"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // ========== IDIOMAS ==========
+        let currentLang = 'es';
+        
+        function updateSelectsLanguage() {
+            const selects = document.querySelectorAll('select');
+            selects.forEach(select => {
+                const options = select.options;
+                for (let i = 0; i < options.length; i++) {
+                    const option = options[i];
+                    const langText = option.getAttribute(`data-lang-${currentLang}`);
+                    if (langText) {
+                        option.textContent = langText;
+                    }
+                }
+            });
+        }
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.remove('hidden');
+                } else {
+                    el.classList.add('hidden');
+                }
+            });
+            
+            updateSelectsLanguage();
+            
+            const flagSpan = document.getElementById('lang-flag-footer');
+            const textSpan = document.getElementById('lang-text-footer');
+            
+            if (flagSpan && textSpan) {
+                if (lang === 'es') {
+                    textSpan.textContent = 'ES';
+                    flagSpan.innerHTML = '🇪🇸';
+                } else {
+                    textSpan.textContent = 'EN';
+                    flagSpan.innerHTML = '🇬🇧';
+                }
+            }
+            
+            localStorage.setItem('acosus_lang', lang);
+            document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+        }
+        
+        function toggleLanguage() {
+            if (currentLang === 'es') {
+                setLanguage('en');
+            } else {
+                setLanguage('es');
+            }
+        }
+        
+        const savedLang = localStorage.getItem('acosus_lang');
+        if (savedLang && (savedLang === 'es' || savedLang === 'en')) {
+            setLanguage(savedLang);
+        } else {
+            setLanguage('es');
+        }
+        
+        const langToggleFooter = document.getElementById('lang-toggle-footer');
+        if (langToggleFooter) {
+            langToggleFooter.addEventListener('click', toggleLanguage);
+        }
+        
+        // ========== FAQ ==========
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // ========== Back to top ==========
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        backToTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        
+        // ========== MENÚ MÓVIL ==========
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = menuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+            
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            let scrollTimer;
+            window.addEventListener('scroll', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    clearTimeout(scrollTimer);
+                    scrollTimer = setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }, 150);
+                }
+            });
+        }
+        
+        // ========== Navegación suave ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            if (menuToggle) {
+                                const icon = menuToggle.querySelector('i');
+                                icon.classList.remove('fa-times');
+                                icon.classList.add('fa-bars');
+                            }
+                        }
+                        window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+        
+        // ========== Formularios ==========
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const idiomaActual = localStorage.getItem('acosus_lang') || 'es';
+                if (idiomaActual === 'es') {
+                    alert('✅ Gracias por su mensaje. Nos pondremos en contacto con usted a la brevedad.');
+                } else {
+                    alert('✅ Thank you for your message. We will contact you shortly.');
+                }
+                contactForm.reset();
+            });
+        }
+        
+        const rrhhForm = document.getElementById('rrhhForm');
+        if (rrhhForm) {
+            rrhhForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const idiomaActual = localStorage.getItem('acosus_lang') || 'es';
+                if (idiomaActual === 'es') {
+                    alert('✅ Gracias por postular. Hemos recibido tu currículum y te contactaremos pronto.');
+                } else {
+                    alert('✅ Thank you for applying. We have received your CV and will contact you soon.');
+                }
+                rrhhForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
