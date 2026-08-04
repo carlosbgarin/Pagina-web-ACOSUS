@@ -395,65 +395,33 @@
                         <i class="fas fa-file-upload mr-3 text-teal-600"></i> <span data-lang="es">Postula Aquí</span><span data-lang="en" class="hidden">Apply Here</span>
                     </h3>
                     
-                    <!-- FORMULARIO RRHH CORREGIDO CON FORMPREE -->
-                    <form action="https://formspree.io/f/xvzlljpz" method="POST" enctype="multipart/form-data" class="space-y-4 contact-form" id="rrhhForm" target="_blank" rel="noopener" accept-charset="UTF-8">
-                        <div>
-                            <label for="postulante-nombre" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Nombre Completo</span><span data-lang="en" class="hidden">Full Name</span> *</label>
-                            <input type="text" id="postulante-nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                    <!-- NUEVO BLOQUE DE RRHH ACOSUS STYLE -->
+                    <div class="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 mt-8">
+                        <!-- Imagen -->
+                        <div class="md:w-1/3 h-48 md:h-auto">
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&auto=format&fit=crop&q=60" 
+                                 alt="Equipo profesional ACOSUS" 
+                                 class="w-full h-full object-cover" 
+                                 loading="lazy">
                         </div>
-                        
-                        <div>
-                            <label for="postulante-email" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Correo Electrónico</span><span data-lang="en" class="hidden">Email</span> *</label>
-                            <input type="email" id="postulante-email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
+                        <!-- Contenido -->
+                        <div class="md:w-2/3 p-8 flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="bg-teal-100 text-teal-600 rounded-full p-2">
+                                    <i class="fas fa-file-upload text-xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800">Trabaja con Nosotros</h3>
+                            </div>
+                            <p class="text-gray-600 mb-6 text-lg">
+                                ¿Quieres formar parte del equipo ACOSUS? 
+                                Envía tu postulación a través de nuestro formulario de RRHH.
+                            </p>
+                            <a href="https://forms.gle/bE1mt5vmnYTbKEan6" target="_blank" rel="noopener" 
+                               class="btn-primary text-white font-bold py-3 px-6 rounded-xl inline-block transition w-full md:w-auto text-center">
+                                <i class="fas fa-paper-plane mr-2"></i> Ir al Formulario de RRHH
+                            </a>
                         </div>
-                        
-                        <div>
-                            <label for="postulante-telefono" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Teléfono</span><span data-lang="en" class="hidden">Phone</span> *</label>
-                            <input type="tel" id="postulante-telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
-                        </div>
-                        
-                        <div>
-                            <label for="postulante-cargo" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Cargo de Interés</span><span data-lang="en" class="hidden">Position of Interest</span> *</label>
-                            <select id="postulante-cargo" name="cargo" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
-                                <option value="seleccione" data-lang-es="Selecciona un cargo" data-lang-en="Select a position">Selecciona un cargo</option>
-                                <option value="conserje" data-lang-es="Conserje Profesional" data-lang-en="Professional Concierge">Conserje Profesional</option>
-                                <option value="aseo" data-lang-es="Personal de Aseo" data-lang-en="Cleaning Staff">Personal de Aseo</option>
-                                <option value="mayordomo" data-lang-es="Mayordomo/Administrador" data-lang-en="Butler/Administrator">Mayordomo/Administrador</option>
-                                <option value="otros" data-lang-es="Otro" data-lang-en="Other">Otro</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="postulante-experiencia" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Años de Experiencia</span><span data-lang="en" class="hidden">Years of Experience</span> *</label>
-                            <select id="postulante-experiencia" name="experiencia" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
-                                <option value="" data-lang-es="Selecciona experiencia" data-lang-en="Select experience">Selecciona experiencia</option>
-                                <option value="0-1" data-lang-es="0-1 año" data-lang-en="0-1 year">0-1 año</option>
-                                <option value="1-3" data-lang-es="1-3 años" data-lang-en="1-3 years">1-3 años</option>
-                                <option value="3-5" data-lang-es="3-5 años" data-lang-en="3-5 years">3-5 años</option>
-                                <option value="5+" data-lang-es="5+ años" data-lang-en="5+ years">5+ años</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="postulante-cv" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Adjuntar Curriculum Vitae</span><span data-lang="en" class="hidden">Upload CV</span> *</label>
-                            <input type="file" id="postulante-cv" name="cv" accept=".pdf,.doc,.docx" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
-                            <p class="text-sm text-gray-500 mt-1"><span data-lang="es">Formatos: PDF, DOC, DOCX (Máx. 5MB)</span><span data-lang="en" class="hidden">Formats: PDF, DOC, DOCX (Max. 5MB)</span></p>
-                        </div>
-                        
-                        <div>
-                            <label for="postulante-mensaje" class="block text-gray-700 font-medium mb-2"><span data-lang="es">¿Por qué quieres trabajar con nosotros?</span><span data-lang="en" class="hidden">Why do you want to work with us?</span></label>
-                            <textarea id="postulante-mensaje" name="mensaje" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" placeholder="..."></textarea>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <input type="checkbox" id="postulante-privacidad" class="mr-2 rounded" required>
-                            <label for="postulante-privacidad" class="text-gray-600 text-sm"><span data-lang="es">Acepto el tratamiento de mis datos para fines de reclutamiento.</span><span data-lang="en" class="hidden">I accept the processing of my data for recruitment purposes.</span></label>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-xl w-full transition">
-                            <i class="fas fa-paper-plane mr-2"></i> <span data-lang="es">Enviar Postulación</span><span data-lang="en" class="hidden">Submit Application</span>
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
             
@@ -500,29 +468,34 @@
                 <div class="lg:w-1/2">
                     <div class="bg-gray-50 p-8 rounded-2xl shadow-md">
                         <h3 class="text-2xl font-bold text-gray-800 mb-6"><span data-lang="es">Formulario de Contacto</span><span data-lang="en" class="hidden">Contact Form</span></h3>
-                        <!-- FORMULARIO CONTACTO CORREGIDO CON FORMPREE -->
-                        <form action="https://formspree.io/f/mdabbvqw" method="POST" class="space-y-4 contact-form" id="contactForm" target="_blank" rel="noopener" accept-charset="UTF-8">
-                            <div><label for="nombre" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Nombre Completo</span><span data-lang="en" class="hidden">Full Name</span> *</label><input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></div>
-                            <div><label for="email" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Correo Electrónico</span><span data-lang="en" class="hidden">Email</span> *</label><input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></div>
-                            <div><label for="telefono" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Teléfono</span><span data-lang="en" class="hidden">Phone</span> *</label><input type="tel" id="telefono" name="telefono" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></div>
-                            <div><label for="comunidad" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Nombre de su Comunidad/Edificio</span><span data-lang="en" class="hidden">Community/Building Name</span></label><input type="text" id="comunidad" name="comunidad" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition"></div>
-                            <div>
-                                <label for="servicio" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Servicio de Interés</span><span data-lang="en" class="hidden">Service of Interest</span> *</label>
-                                <select id="servicio" name="servicio" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required>
-                                    <option value="seleccione" data-lang-es="Seleccione un servicio" data-lang-en="Select a service">Seleccione un servicio</option>
-                                    <option value="administracion" data-lang-es="Administración Integral" data-lang-en="Comprehensive Management">Administración Integral</option>
-                                    <option value="financiera" data-lang-es="Gestión Financiera" data-lang-en="Financial Management">Gestión Financiera</option>
-                                    <option value="mantenimiento" data-lang-es="Mantenimiento Preventivo" data-lang-en="Preventive Maintenance">Mantenimiento Preventivo</option>
-                                    <option value="seguridad" data-lang-es="Seguridad y Convivencia" data-lang-en="Security and Coexistence">Seguridad y Convivencia</option>
-                                    <option value="sostenibilidad" data-lang-es="Gestión Sostenible" data-lang-en="Sustainable Management">Gestión Sostenible</option>
-                                    <option value="legal" data-lang-es="Asesoría Legal" data-lang-en="Legal Advice">Asesoría Legal</option>
-                                    <option value="otros" data-lang-es="Otros" data-lang-en="Other">Otros</option>
-                                </select>
+                        
+                        <!-- NUEVO BLOQUE DE CONTACTO ACOSUS STYLE -->
+                        <div class="flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 mt-8">
+                            <!-- Imagen -->
+                            <div class="md:w-1/3 h-48 md:h-auto">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop&q=60" 
+                                     alt="Edificio ACOSUS" 
+                                     class="w-full h-full object-cover" 
+                                     loading="lazy">
                             </div>
-                            <div><label for="mensaje" class="block text-gray-700 font-medium mb-2"><span data-lang="es">Mensaje</span><span data-lang="en" class="hidden">Message</span> *</label><textarea id="mensaje" name="mensaje" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-teal-500 transition" required></textarea></div>
-                            <div class="flex items-center"><input type="checkbox" id="privacidad" name="privacidad" class="mr-2 rounded" required><label for="privacidad" class="text-gray-600 text-sm"><span data-lang="es">Acepto la política de privacidad.</span><span data-lang="en" class="hidden">I accept the privacy policy.</span></label></div>
-                            <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-xl w-full transition"><i class="fas fa-paper-plane mr-2"></i> <span data-lang="es">Enviar Mensaje</span><span data-lang="en" class="hidden">Send Message</span></button>
-                        </form>
+                            <!-- Contenido -->
+                            <div class="md:w-2/3 p-8 flex flex-col justify-center">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="bg-teal-100 text-teal-600 rounded-full p-2">
+                                        <i class="fas fa-envelope-open-text text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-800">Contáctenos</h3>
+                                </div>
+                                <p class="text-gray-600 mb-6 text-lg">
+                                    ¿Necesita ayuda con la administración de su comunidad? 
+                                    Complete nuestro formulario seguro y le responderemos a la brevedad.
+                                </p>
+                                <a href="https://forms.gle/Wtusu7VNdWyxpgZq6" target="_blank" rel="noopener" 
+                                   class="btn-primary text-white font-bold py-3 px-6 rounded-xl inline-block transition w-full md:w-auto text-center">
+                                    <i class="fas fa-paper-plane mr-2"></i> Ir al Formulario
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
